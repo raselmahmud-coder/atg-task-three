@@ -3,16 +3,12 @@ import { ListGroup } from "react-bootstrap";
 import avatar from "../../images/saj.jpg";
 const User = (props) => {
   const { user } = props;
-    const handleSingleUser = (userId) => {
-        // props.history.push(`/users/${user.id}`);
-        console.log(userId);
-
-    }
+    
 
   return (
     <>
       {user.id % 2 === 0 ? (
-        <ListGroup.Item onClick={()=>handleSingleUser(user.id)} action variant="secondary" className="my-1">
+        <ListGroup.Item onClick={()=>props.handleSingleUser(user.id)} action variant="secondary" className="my-1">
           <div className="d-flex justify-content-between">
             <img
               src={avatar}
@@ -26,7 +22,7 @@ const User = (props) => {
           </div>
         </ListGroup.Item>
       ) : (
-        <ListGroup.Item onClick={()=>handleSingleUser(user.id)} action variant="success">
+        <ListGroup.Item onClick={()=>props.handleSingleUser(user.id)} action variant="success">
           <div className="d-flex justify-content-between">
             <img
               src={avatar}
