@@ -92,6 +92,7 @@ const Users = () => {
             onKeyUp={handleSearch}
           />
           {notFound && <p className="text-center">Not Found</p>}
+          
           {placeholder
             ? placeHolderCount.map((item) => {
                 return <PlaceHolder key={item} id={item} />;
