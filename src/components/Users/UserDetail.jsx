@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import saj from "../../images/saj.jpg";
 import axios from "axios";
 import "./single.scss";
 import SingleUserPlaceHolder from "../PlaceHolder/SingleUserPlaceHolder";
@@ -28,7 +27,7 @@ const UserDetail = (props) => {
             <div className="d-flex justify-content-center">
               <div className="shape mt-2">
                 <img
-                  src={saj}
+                  src={`https://randomuser.me/api/portraits/med/women/${Math.floor(Math.random()*9)+9}.jpg`}
                   alt=""
                   className="rounded-circle d-block mx-auto mt-2 shadow-lg"
                   style={{
@@ -39,8 +38,8 @@ const UserDetail = (props) => {
                 />
               </div>
             </div>
-            <p className="text-center text-uppercase">
-              @{user?.profile?.username}
+            <p className="text-center text-uppercase text-underline mt-2">
+            <u> User Name:  @{user?.profile?.username} </u>
             </p>
             <p className="text-capitalize text-center">
               Job Title: {user?.jobTitle}

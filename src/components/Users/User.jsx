@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { ListGroup } from "react-bootstrap";
-import avatar from "../../images/saj.jpg";
 import plus from "../../images/plus.png";
 import minus from "../../images/minus.png";
 
@@ -30,14 +29,14 @@ const User = (props) => {
             className="d-flex justify-content-between align-items-center"
             style={{ backgroundColor: "#e2e3e5" }}>
             <img
-              src={avatar}
+              src={`https://randomuser.me/api/portraits/med/men/${Math.floor(Math.random()*9)+9}.jpg`}
               className="rounded-circle"
               alt=""
-              style={{ width: "35px", height: "35px" }}
+              style={{ width: "45px", height: "45px" }}
             />
-            <h3 style={{ backgroundColor: "#e2e3e5" }}>
-              {user.profile.firstName} {user.profile.lastName}
-            </h3>
+            <h4 style={{ backgroundColor: "#e2e3e5" }}>
+              {user?.profile?.firstName} {user?.profile?.lastName}
+            </h4>
 
             <img
               src={isActive ? minus : plus}
@@ -57,14 +56,14 @@ const User = (props) => {
             className="d-flex justify-content-between"
             style={{ backgroundColor: "#d1e7dd" }}>
             <img
-              src={avatar}
+              src={`https://randomuser.me/api/portraits/med/women/${Math.floor(Math.random()*9)+9}.jpg`}
               className="rounded-circle"
-              style={{ width: "35px", height: "35px" }}
+              style={{ width: "45px", height: "45px" }}
               alt=""
             />
-            <h3 style={{ backgroundColor: "#d1e7dd" }}>
-              {user.profile.firstName}
-            </h3>
+            <h4 style={{ backgroundColor: "#d1e7dd" }}>
+              {user?.profile?.firstName}
+            </h4>
 
             <img
               src={isActive ? minus : plus}

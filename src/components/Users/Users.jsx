@@ -12,6 +12,8 @@ const Users = () => {
   const [Users, setUsers] = useState([]);
   const [placeholder, setPlaceholder] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [notFound, setNotFound] = useState(false);
+  const [reFetch, setReFetch] = useState(false);
 
   useEffect(() => {
     async function getUsers() {
@@ -21,21 +23,47 @@ const Users = () => {
       );
       setUsers(response.data);
       setPlaceholder(false);
+      setReFetch(false);
+        
     }
     getUsers();
 
     return () => {};
-  }, []);
+  }, [reFetch]);
 
   const placeHolderCount = Array(10)
     .fill(0)
     .map((_, i) => i);
 
   const handleSingleUser = (userId) => {
-    // props.history.push(`/users/${user.id}`);
     setUserId(userId);
-    // console.log(userId)
   };
+
+  const handleSearch = (e) => {
+    const search = e.target.value;
+    if (search.length === 0) {
+      setReFetch(true);
+      setNotFound(false);
+    } else {
+      const filteredUsers = Users.filter((user) => {
+        return (
+          user.profile.firstName.toLowerCase().includes(search.toLowerCase()) ||
+          user.profile.lastName.toLowerCase().includes(search.toLowerCase())
+        );
+      });
+
+      if (filteredUsers.length > 0) {
+        setNotFound(false);
+        setUsers(filteredUsers);
+      }
+      if (filteredUsers.length === 0) {
+        setNotFound(true);
+        setUsers([]);
+      }
+      console.log(filteredUsers);
+    }
+  };
+
   return (
     <section className="row">
       <ListGroup className="col-lg-6 col-md-6 col-12">
@@ -57,6 +85,13 @@ const Users = () => {
             />
             All Users
           </h2>
+          <input
+            type="text"
+            placeholder="Search First Name or Last Name"
+            className="form-control my-4"
+            onKeyUp={handleSearch}
+          />
+          {notFound && <p className="text-center">Not Found</p>}
           {placeholder
             ? placeHolderCount.map((item) => {
                 return <PlaceHolder key={item} id={item} />;
