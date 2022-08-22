@@ -1,35 +1,24 @@
-import React, { useEffect, useState } from "react";
-import saj from "../../images/saj.jpg";
-import axios from "axios";
+import Placeholder from 'react-bootstrap/Placeholder';
+import Card from 'react-bootstrap/Card';
+import placeholder from '../../images/placeholder.png';
 
-const SingleUserPlaceHolder = (props) => {
-  console.log(props);
-  const [user, setUser] = useState([{}]);
-  useEffect(() => {
-    async function getUser() {
-      const response = await axios.get(
-        `https://602e7c2c4410730017c50b9d.mockapi.io/users/${props.userId}`,
-      );
-      setUser([{ ...response.data }]);
-    }
-    getUser();
-  }, [props.userId]);
-
-  console.log(user);
+const SingleUserPlaceHolder = () => {
 
   return (
-    <div>
-      {user?.map((user, index) => (
-        <div key={index}>
-          <img
-            src={saj}
-            alt=""
-            className="rounded-circle"
-            style={{ width: "35px", height: "35px" }}
-          />
-          <p className="text-center text-uppercase">@{user?.profile?.username}</p>
-        </div>
-      ))}
+    <div className="p-4">
+      <Card.Img variant="top" src={placeholder} style={{width:"60%", height:'250px'}} className="mx-auto d-block pb-2" />
+       <Placeholder as={Card.Title} animation="glow">
+        <Placeholder xs={12} size="lg"/>
+      </Placeholder>
+      
+        <Placeholder as={Card.Text} animation="glow">
+          <Placeholder xs={4} size="lg" /> <Placeholder xs={7} size="lg" />
+          <Placeholder xs={6} size="lg" /> <Placeholder xs={5} size="lg" />
+          <Placeholder xs={4} size="lg" /> <Placeholder xs={5} size="lg" />
+          <Placeholder xs={5} size="lg" /> <Placeholder xs={6} size="lg" />
+      </Placeholder>
+      
+       
     </div>
   );
 };

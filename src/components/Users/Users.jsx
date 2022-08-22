@@ -6,12 +6,13 @@ import users from "../../images/users.png";
 import user from "../../images/user.png";
 import style from "./customStyle.module.css";
 import PlaceHolder from "../PlaceHolder/PlaceHolder";
-import SingleUserPlaceHolder from "../PlaceHolder/SingleUserPlaceHolder";
+import UserDetail from "./UserDetail";
 
 const Users = () => {
   const [Users, setUsers] = useState([]);
   const [placeholder, setPlaceholder] = useState(false);
   const [userId, setUserId] = useState(null);
+
   useEffect(() => {
     async function getUsers() {
       setPlaceholder(true);
@@ -29,9 +30,11 @@ const Users = () => {
   const placeHolderCount = Array(10)
     .fill(0)
     .map((_, i) => i);
+
   const handleSingleUser = (userId) => {
     // props.history.push(`/users/${user.id}`);
     setUserId(userId);
+    // console.log(userId)
   };
   return (
     <section className="row">
@@ -44,7 +47,12 @@ const Users = () => {
             }>
             <img
               src={users}
-              style={{ width: "29px", height: "29px", marginRight: "4px" }}
+              style={{
+                width: "29px",
+                height: "29px",
+                marginRight: "4px",
+                borderRadius: "50%",
+              }}
               alt=""
             />
             All Users
@@ -53,8 +61,9 @@ const Users = () => {
             ? placeHolderCount.map((item) => {
                 return <PlaceHolder key={item} id={item} />;
               })
-            : Users.map((user) => (
+            : Users.map((user, index) => (
                 <User
+                  index={index}
                   key={user.id}
                   handleSingleUser={handleSingleUser}
                   user={user}
@@ -72,13 +81,18 @@ const Users = () => {
               }>
               <img
                 src={user}
-                style={{ width: "29px", height: "29px", marginRight: "4px" }}
+                style={{
+                  width: "29px",
+                  height: "29px",
+                  marginRight: "4px",
+                  borderRadius: "50%",
+                }}
                 alt=""
               />
               User Details
             </h2>
-
-            <SingleUserPlaceHolder userId={userId} />
+            <UserDetail userId={userId} />
+            {/* <SingleUserPlaceHolder userId={userId} /> */}
           </div>
         )}
       </div>
